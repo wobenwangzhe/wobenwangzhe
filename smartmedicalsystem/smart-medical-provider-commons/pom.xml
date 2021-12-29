@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0
+         http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+    <packaging>jar</packaging>
+
+  <artifactId>smart-medical-provider-commons</artifactId>
+
+
+  <parent>
+    <groupId>com.medical.smart</groupId>
+    <artifactId>smart-medical-parent</artifactId>
+    <version>1.0.0</version>
+  </parent>
+
+
+  <dependencies>
+      <dependency>
+          <groupId>com.medical.smart</groupId>
+          <artifactId>smart-medical-consumer-commons</artifactId>
+          <version>${parent.version}</version>
+      </dependency>
+      <!-- 对象快速复制属性依赖 -->
+      <dependency>
+          <groupId>org.mapstruct</groupId>
+          <artifactId>mapstruct</artifactId>
+          <version>${mapstruct.version}</version>
+      </dependency>
+      <dependency>
+          <groupId>org.mapstruct</groupId>
+          <artifactId>mapstruct-processor</artifactId>
+          <version>${mapstruct.version}</version>
+      </dependency>
+
+      <!-- 数据库连接依赖 -->
+      <dependency>
+          <groupId>mysql</groupId>
+          <artifactId>mysql-connector-java</artifactId>
+      </dependency>
+      <dependency>
+          <groupId>com.alibaba</groupId>
+          <artifactId>druid-spring-boot-starter</artifactId>
+          <version>${druid-spring-boot-starter}</version>
+      </dependency>
+      <dependency>
+      <groupId>org.mybatis.spring.boot</groupId>
+      <artifactId>mybatis-spring-boot-starter</artifactId>
+      <version>${mybatis-spring-boot-starter.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>com.baomidou</groupId>
+      <artifactId>mybatis-plus-boot-starter</artifactId>
+      <version>${mybatis-plus-boot-starter.version}</version>
+    </dependency>
+
+  </dependencies>
+
+
+</project>

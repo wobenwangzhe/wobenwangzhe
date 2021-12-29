@@ -1,0 +1,4 @@
+spring:
+  main:
+    #### 打开可以重写spring 注解类名的配置
+    allow-bean-definition-overriding: true

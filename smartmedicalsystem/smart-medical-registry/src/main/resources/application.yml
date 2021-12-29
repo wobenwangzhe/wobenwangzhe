@@ -1,0 +1,23 @@
+#### 注册中心占用端口号
+server:
+  port: 8888
+#### 项目名称
+spring:
+  application:
+    name: smart-medical-registry
+#### 配置eureka
+eureka:
+  instance:
+    #### 主机名
+    hostname: localhost
+  client:
+    #### 不需要注册自己
+    register-with-eureka: false
+    #### 不需要发现别的注册中心
+    fetch-registry: false
+    #### 注册地址
+    service-url:
+      defaultZone: http://${eureka.instance.hostname}:${server.port}/eureka
+
+
+
