@@ -1,1 +1,10 @@
 项目说明
+	swgger: swagger-ui/index.html	接口测试地址
+
+	1.警告信息:2021-12-30  23:09:54.884 [restartedMain] WARN  o.s.c.l.config.LoadBalancerCacheAutoConfiguration$LoadBalancerCaffeineWarnLogger - Spring Cloud LoadBalancer is currently working with the default cache. You can switch to using Caffeine cache, by adding it and org.springframework.cache.caffeine.CaffeineCacheManager to the classpath.
+		Spring Cloud LoadBalancer 当前正在使用默认缓存。 您可以切换到使用 Caffeine 缓存，方法是将它和 org.springframework.cache.caffeine.CaffeineCacheManager 添加到类路径。
+		解决网页:http://www.manongjc.com/detail/27-izowdnxltmpmrhp.html
+	2.警告信息:2021-12-30  23:09:54.300 [restartedMain] WARN  org.springframework.boot.devtools.autoconfigure.OptionalLiveReloadServer - Unable to start LiveReload server
+
+
+

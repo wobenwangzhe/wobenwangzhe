@@ -21,7 +21,7 @@ public class ResponseVO implements Serializable {
 	 * @return
 	 */
 	public static ResponseVO getSuccesss(){
-		return new ResponseVO(ResponseCode.RESPONSECODE_SUCCESS, "");
+		return new ResponseVO(ResponseCode.RESPONSECODE_SUCCESS, ResponseCode.RESPONSECODE_SUCCESS.getRemark());
 	}
 	/**
 	 * 系统响应成功-带成功信息

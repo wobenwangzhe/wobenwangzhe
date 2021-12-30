@@ -1,0 +1,7 @@
+server:
+  port: 20050
+spring:
+  profiles:
+    active: commons,data
+  application:
+    name: smart-medical-provider-system

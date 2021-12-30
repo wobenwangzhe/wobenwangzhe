@@ -22,6 +22,23 @@
           <groupId>com.medical.smart</groupId>
           <artifactId>smart-medical-consumer-commons</artifactId>
           <version>${parent.version}</version>
+          <exclusions>
+              <!-- 生产者项目不需要swagger依赖 -->
+              <exclusion>
+                  <groupId>io.springfox</groupId>
+                  <artifactId>springfox-boot-starter</artifactId>
+              </exclusion>
+              <!-- 生产者项目不需要远程调用 -->
+              <exclusion>
+                  <groupId>org.springframework.cloud</groupId>
+                  <artifactId>spring-cloud-starter-openfeign</artifactId>
+              </exclusion>
+          </exclusions>
+      </dependency>
+      <!-- redis -->
+      <dependency>
+          <groupId>org.springframework.boot</groupId>
+          <artifactId>spring-boot-starter-data-redis</artifactId>
       </dependency>
       <!-- 对象快速复制属性依赖 -->
       <dependency>

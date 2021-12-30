@@ -16,16 +16,17 @@
  </parent>
 
   <dependencies>
+      <!-- 远程调用 -->
+      <dependency>
+          <groupId>org.springframework.cloud</groupId>
+          <artifactId>spring-cloud-starter-openfeign</artifactId>
+      </dependency>
+
     <!-- spring cloud 微服务项目依赖用于在注册中心注册 -->
     <dependency>
       <groupId>org.springframework.cloud</groupId>
       <artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
     </dependency>
-  <!-- redis -->
-  <dependency>
-      <groupId>org.springframework.boot</groupId>
-      <artifactId>spring-boot-starter-data-redis</artifactId>
-  </dependency>
 
       <!-- hotool工具 -->
   <!-- https://mvnrepository.com/artifact/cn.hutool/hutool-all -->
@@ -34,13 +35,20 @@
       <artifactId>hutool-all</artifactId>
       <version>${hutool-all.version}</version>
   </dependency>
-      <!-- https://mvnrepository.com/artifact/org.projectlombok/lombok -->
+
+      <!-- 简化代码 -->
       <dependency>
           <groupId>org.projectlombok</groupId>
           <artifactId>lombok</artifactId>
           <version>${lombok.version}</version>
       </dependency>
 
+      <!-- swagger 前后端交互接口api -->
+      <dependency>
+          <groupId>io.springfox</groupId>
+          <artifactId>springfox-boot-starter</artifactId>
+          <version>${springfox-boot-starter.version}</version>
+      </dependency>
 
   </dependencies>
 

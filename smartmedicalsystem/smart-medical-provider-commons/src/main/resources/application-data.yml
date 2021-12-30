@@ -39,8 +39,3 @@ spring:
         login-password: 123456
         #### 能否重置数据
         reset-enable: false
-#### eureka配置注册中心网址
-eureka:
-  client:
-    service-url:
-      defaultZone: http://localhost:8888/eureka
