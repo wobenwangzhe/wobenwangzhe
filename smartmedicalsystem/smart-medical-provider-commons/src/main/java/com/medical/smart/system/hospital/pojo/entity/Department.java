@@ -27,6 +27,7 @@ public class Department extends BaseEntity {
 	/**
 	 * 上级部门编码
 	 */
+	@TableField
 	private String parent;
 	/**
 	 * 编码

@@ -12,7 +12,7 @@ import lombok.Data;
  */
 @Data
 @TableName("sys_pro_rank")
-public class Prorank extends BaseEntity {
+public class ProRank extends BaseEntity {
 	private static final long serialVersionUID = -8257128570675405125L;
 	/**
 	 * 主键

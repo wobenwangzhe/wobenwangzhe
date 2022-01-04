@@ -1,5 +1,6 @@
 package com.medical.smart.base.pojo.vo;
 
+import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 
 import java.io.Serializable;
@@ -22,11 +23,15 @@ import java.util.Date;
 @Data
 public class BaseVO implements Serializable {
 	private static final long serialVersionUID = -8919285487147895029L;
-
+	@ApiModelProperty(value = "系统状态")
 	private String status;                      // 系统状态：0-禁用，1-启用
+	@ApiModelProperty(value = "创建人")
 	private String createdBy;                   // 创建人
+	@ApiModelProperty(value = "创建时间")
 	private Date createdTime;                   // 创建时间
+	@ApiModelProperty(value = "修改人")
 	private String modifiedBy;                  // 修改人
+	@ApiModelProperty(value = "修改时间")
 	private Date modifiedTime;                  // 修改时间
 
 	}

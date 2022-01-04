@@ -1,6 +1,8 @@
 package com.medical.smart.base.pojo.vo;
 
 import com.medical.smart.base.pojo.enums.ResponseCode;
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
 
 import java.io.Serializable;
 
@@ -10,10 +12,14 @@ import java.io.Serializable;
  * @author 王晗
  * @version 1.0.0
  */
+@ApiModel(value = "浏览器响应对象",description = "浏览器响应对象")
 public class ResponseVO implements Serializable {
 	private static final long serialVersionUID = 4216896198092924599L;
+	@ApiModelProperty(value = "系统响应编码")
 	private String code;                        // 系统响应编码
+	@ApiModelProperty(value = "系统响应信息")
 	private String message;                     // 系统响应信息
+	@ApiModelProperty(value = "系统相应数据")
 	private Object data;                        // 系统响应数据
 
 	/**

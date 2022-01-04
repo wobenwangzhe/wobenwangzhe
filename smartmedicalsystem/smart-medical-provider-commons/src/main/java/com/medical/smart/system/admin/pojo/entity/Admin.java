@@ -66,7 +66,7 @@ public class Admin extends BaseEntity {
 	@TableField
 	private String position;
 	/**
-	 * 专业技术职务名称
+	 * 专业技术职务
 	 */
 	@TableField(value = "proTitle")
 	private String proTitle;
