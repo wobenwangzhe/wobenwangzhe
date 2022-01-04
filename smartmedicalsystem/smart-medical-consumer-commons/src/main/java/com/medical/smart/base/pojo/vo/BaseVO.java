@@ -16,7 +16,10 @@ import java.util.Date;
  *     5,modifiedTime 修改时间
  *     本项目所有视图信息都继承于基础视图类
  * </p>
+ * @author 王晗
+ * @version 1.0.0
  */
+@Data
 public class BaseVO implements Serializable {
 	private static final long serialVersionUID = -8919285487147895029L;
 
@@ -26,43 +29,4 @@ public class BaseVO implements Serializable {
 	private String modifiedBy;                  // 修改人
 	private Date modifiedTime;                  // 修改时间
 
-	public String getStatus() {
-		return status;
 	}
-
-	public void setStatus(String status) {
-		this.status = status;
-	}
-
-	public String getCreatedBy() {
-		return createdBy;
-	}
-
-	public void setCreatedBy(String createdBy) {
-		this.createdBy = createdBy;
-	}
-
-	public Date getCreatedTime() {
-		return createdTime;
-	}
-
-	public void setCreatedTime(Date createdTime) {
-		this.createdTime = createdTime;
-	}
-
-	public String getModifiedBy() {
-		return modifiedBy;
-	}
-
-	public void setModifiedBy(String modifiedBy) {
-		this.modifiedBy = modifiedBy;
-	}
-
-	public Date getModifiedTime() {
-		return modifiedTime;
-	}
-
-	public void setModifiedTime(Date modifiedTime) {
-		this.modifiedTime = modifiedTime;
-	}
-}
