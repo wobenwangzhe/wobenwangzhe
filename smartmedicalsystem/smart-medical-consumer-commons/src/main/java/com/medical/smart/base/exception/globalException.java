@@ -24,7 +24,7 @@ public class globalException {
 	@ExceptionHandler
 	public ResponseVO globalException(HttpServletRequest request, HttpServletResponse response, Exception e){
 		//打印日志
-		logger.error(e.getMessage()+":"+new Date());
+		logger.error(e.getMessage()+":"+new Date(),e);
 		//向浏览器返回 ResponseVO 响应对象
 		return ResponseVO.exception(e);
 	}

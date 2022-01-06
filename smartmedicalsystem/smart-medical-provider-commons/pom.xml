@@ -18,6 +18,7 @@
 
 
   <dependencies>
+
       <dependency>
           <groupId>com.medical.smart</groupId>
           <artifactId>smart-medical-consumer-commons</artifactId>
@@ -33,13 +34,14 @@
                   <groupId>org.springframework.cloud</groupId>
                   <artifactId>spring-cloud-starter-openfeign</artifactId>
               </exclusion>
+              <!-- 生产者项目不需要熔断机制 -->
+              <exclusion>
+                  <groupId>org.springframework.cloud</groupId>
+                  <artifactId>spring-cloud-starter-netflix-hystrix</artifactId>
+              </exclusion>
           </exclusions>
       </dependency>
-      <!-- redis -->
-      <dependency>
-          <groupId>org.springframework.boot</groupId>
-          <artifactId>spring-boot-starter-data-redis</artifactId>
-      </dependency>
+
       <!-- 对象快速复制属性依赖 -->
       <dependency>
           <groupId>org.mapstruct</groupId>
@@ -52,6 +54,13 @@
           <version>${mapstruct.version}</version>
       </dependency>
 
+      <!-- 代码生成器依赖 -->
+      <!-- 配置 Spring Boot Starter Freemarker 依赖 [BEGIN] -->
+      <dependency>
+          <groupId>org.springframework.boot</groupId>
+          <artifactId>spring-boot-starter-freemarker</artifactId>
+      </dependency>
+      <!-- 配置 Spring Boot Starter Freemarker 依赖 [END] -->
 
       <!-- 数据库连接依赖 -->
       <dependency>

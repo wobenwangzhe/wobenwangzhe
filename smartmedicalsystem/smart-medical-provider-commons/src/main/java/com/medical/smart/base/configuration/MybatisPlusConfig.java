@@ -15,7 +15,7 @@ import org.springframework.context.annotation.Configuration;
  * @version 1.0.0
  */
 @Configuration
-@MapperScan("com.medical.smart.*.dao")
+@MapperScan("com.medical.smart.*.*.dao")
 public class MybatisPlusConfig {
 	/**
 	 *   mybatis-plus分页插件

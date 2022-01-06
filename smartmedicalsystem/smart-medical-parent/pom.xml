@@ -28,12 +28,14 @@
     <maven.compiler.target>1.8</maven.compiler.target>
     <!-- cloud版本需要与父级依赖的版本相对应 -->
     <spring.cloud-version>2021.0.0</spring.cloud-version>
-    <spring-boot-devtools.version>2.6.2</spring-boot-devtools.version>
+    <spring-cloud-starter-netflix-hystrix.version>2.2.10.RELEASE</spring-cloud-starter-netflix-hystrix.version>
+
 
     <hutool-all.version>5.7.18</hutool-all.version>
     <mybatis-plus-boot-starter.version>3.4.3.4</mybatis-plus-boot-starter.version>
     <mybatis-spring-boot-starter.version>2.2.0</mybatis-spring-boot-starter.version>
     <druid-spring-boot-starter>1.2.8</druid-spring-boot-starter>
+    <java-jwt.version>3.18.2</java-jwt.version>
     <!-- 有程序员说 mapstruct 和lombok 的这两个版本完美配合 -->
     <mapstruct.version>1.3.0.Final</mapstruct.version>
     <lombok.version>1.18.10</lombok.version>
@@ -49,11 +51,11 @@
       <groupId>org.springframework.boot</groupId>
       <artifactId>spring-boot-starter-web</artifactId>
     </dependency>
+
     <!-- 项目热重启依赖 -->
     <dependency>
       <groupId>org.springframework.boot</groupId>
       <artifactId>spring-boot-devtools</artifactId>
-      <version>${spring-boot-devtools.version}</version>
     </dependency>
 
     <dependency>
