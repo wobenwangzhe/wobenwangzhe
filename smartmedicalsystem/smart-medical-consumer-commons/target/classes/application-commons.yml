@@ -1,0 +1,13 @@
+spring:
+  main:
+    #### 打开可以重写spring 注解类名的配置
+    allow-bean-definition-overriding: true
+  mvc:
+    pathmatch:
+      #### 为了兼容 springfox 会导致spring-boot的Actuator失效,现在未使用
+      matching-strategy: ant_path_matcher
+#### eureka配置注册中心网址
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8888/eureka/
