@@ -1,6 +1,4 @@
 spring:
-  application:
-    name: cloud-eureka-provider
   main:
     allow-bean-definition-overriding: true
     #### 配置 jdbc信息

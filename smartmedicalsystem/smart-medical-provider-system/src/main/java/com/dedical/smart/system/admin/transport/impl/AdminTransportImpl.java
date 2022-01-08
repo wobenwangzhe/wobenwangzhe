@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.*;
  * @version 1.0.0
  */
 @RestController("adminTransport")
-@RequestMapping("/system/admin/admin/trans")
+@RequestMapping("/system/trans/admin")
 public class AdminTransportImpl implements AdminTransport {
 	@Autowired
 	private AdminService adminService;

@@ -20,4 +20,12 @@ public class Result {
 	 */
 	private String comment;
 
+	public Result(String name, String type, String comment) {
+		this.name = name;
+		this.type = type;
+		this.comment = comment;
+	}
+
+	public Result() {
+	}
 }

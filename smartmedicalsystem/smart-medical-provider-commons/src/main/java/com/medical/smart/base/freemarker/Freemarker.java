@@ -30,11 +30,13 @@ public class Freemarker {
 
 		System.out.println("请输入要生产对应实体类的表名:");
 		tableName=input.next();              //无空格字符串
-
+		System.out.println("请输入你要生成的类名:");
+		className=input.next();
+		//关闭输入流
+		input.close();
 		//拼写SQl语句
 		String sql= "select column_name'name',data_type'type',column_comment'comment' "
 				+"from information_schema.columns where table_schema='medical_db' and table_name= ? order by ordinal_position asc";
-
 		try {
 			//创建
 			PreparedStatement pst = connection.prepareStatement(sql);
@@ -43,8 +45,20 @@ public class Freemarker {
 			//查询
 			ResultSet resultSet = pst.executeQuery();
 			while(resultSet.next()){
-
+				String name = resultSet.getString("name");
+				String type = resultSet.getString("type");
+				String comment = resultSet.getString("comment");
+				if("varchar".equals(type)){
+					type="String";
+				} else if("int".equals(type)){
+					type="Long";
+				} else if("date".equals(type) || "timestamp".equals(type)){
+					type="Date";
+				}
+				Result result = new Result(name,type,comment);
+				list.add(result);
 			}
+		//得到表字段结果集合 list
 
 		} catch (SQLException e) {
 			e.printStackTrace();

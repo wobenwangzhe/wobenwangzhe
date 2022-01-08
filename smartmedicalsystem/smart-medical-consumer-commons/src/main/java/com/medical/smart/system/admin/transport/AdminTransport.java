@@ -18,7 +18,7 @@ public interface AdminTransport {
 	 * @return
 	 * @throws Exception
 	 */
-	@GetMapping ("/system/admin/admin/trans/cellphone/{cellphone}")
+	@GetMapping ("/system/trans/admin/cellphone/{cellphone}")
 	AdminVO getAdminVOByCellphone(@PathVariable("cellphone") String cellphone)
 							throws Exception;
 

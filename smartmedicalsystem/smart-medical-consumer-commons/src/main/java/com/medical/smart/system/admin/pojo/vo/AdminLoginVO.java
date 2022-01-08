@@ -1,6 +1,7 @@
 package com.medical.smart.system.admin.pojo.vo;
 
 import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 
 import javax.validation.constraints.NotEmpty;
@@ -21,6 +22,7 @@ public class AdminLoginVO implements Serializable {
 	 */
 	@NotEmpty(message = "未填写手机号码")
 	@Pattern(regexp = "1[0-9]{10}",message = "手机号码格式错误")
+	@ApiModelProperty(required = true,value = "手机号码,符合1[0-9]{10}",example = "15610570603")
 	private String cellphone;
 
 	/**
@@ -28,6 +30,7 @@ public class AdminLoginVO implements Serializable {
 	 */
 	@NotEmpty(message = "未填写登录密码")
 	@Pattern(regexp = "[A-Za-z0-9_#]{6,}",message = "登录密码格式错误")
+	@ApiModelProperty(required = true,value = "登录密码,符合[A-Za-z0-9_#]{6,}",example = "123456")
 	private String password;
 
 }

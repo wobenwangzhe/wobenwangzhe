@@ -7,10 +7,14 @@ import com.medical.smart.base.pojo.enums.Status;
 import com.medical.smart.base.pojo.vo.ResponseVO;
 import com.medical.smart.base.util.BaseProps;
 import com.medical.smart.base.util.RedisUtil;
-import com.medical.smart.base.util.TokenUtil;
+import com.medical.smart.base.util.TokenBuilder;
 import com.medical.smart.system.admin.pojo.vo.AdminLoginVO;
 import com.medical.smart.system.admin.pojo.vo.AdminVO;
 import com.medical.smart.system.admin.transport.AdminTransport;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiImplicitParam;
+import io.swagger.annotations.ApiImplicitParams;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
@@ -28,8 +32,10 @@ import java.util.Map;
  * @version 1.0.0
  */
 @RestController("adminController")
-@RequestMapping("/system/admin/admin")
+@RequestMapping("/system/consumer/admin")
+@Api(tags = "系统功能-系统用户控制层")
 public class AdminController extends BaseController {
+
 	@Autowired
 	private AdminTransport adminTransport;
 
@@ -39,6 +45,7 @@ public class AdminController extends BaseController {
 	 * @return
 	 * @throws Exception
 	 */
+	@ApiOperation(value = "系统用户登录",notes = "系统用户登录提示")
 	@PostMapping("/login")
 	public ResponseVO loginAdmin(@RequestBody @Validated AdminLoginVO adminLoginVO
 								, BindingResult result) throws Exception{
@@ -65,12 +72,12 @@ public class AdminController extends BaseController {
 
 
 		//此时用户登录成功,生成唯一令牌 token
-		Map<String,String> claimMap = new HashMap<>();
+		Map<String,Object> claimMap = new HashMap<>(BaseProps.MAP_SMALL);
 		//token载荷信息
 		// TODO: 2022/1/6 token令牌的载荷补充完整
 		claimMap.put("id", adminVO.getId());
-		//生成token
-		String token = TokenUtil.createToken(claimMap, BaseProps.AUTH_SEC);
+		//生成token,并设置保存时间
+		String token = TokenBuilder.buildToken(claimMap, BaseProps.AUTH_SEC);
 		//以token为key,adminVO为value 保存到redis中
 		if(RedisUtil.save(token, adminVO, BaseProps.AUTH_SEC)){
 			//登录成功,将 token 返回给用户,绑定到 http请求的消息头部分的:Authorization中

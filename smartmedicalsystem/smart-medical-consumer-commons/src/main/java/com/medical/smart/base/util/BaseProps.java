@@ -37,9 +37,28 @@ public class BaseProps {
 	 */
 	public static final Long AUTH_SEC = Long.parseLong(props.getProperty("auth.sec"));
 	/**
-	 * 令牌保存在http请求头的字段名
+	 * <b>令牌保存在http请求头的字段名</b>
 	 */
 	public static final String TOKEN_SEAT = props.getProperty("token.seat");
-
+	/**
+	 * <b>小的 map 集合的初始大小</b>
+	 */
+	public static final Integer MAP_SMALL = Integer.parseInt(props.getProperty("map.small"));
+	/**
+	 * <b>较大的 map 集合的初始大小</b>
+	 */
+	public static final Integer MAP_BIG = Integer.parseInt(props.getProperty("map.big"));
+	/**
+	 * <b>token中载荷部分储存对应的 key </b>
+	 */
+	public static final String TOKEN_KEY = props.getProperty("token.key");
+	/**
+	 * <b>token 头部 typ中的值</b>
+	 */
+	public static final String CLAIMS_TYPE = props.getProperty("claims.type");
+	/**
+	 * <b>token头部alg中的值</b>
+	 */
+	public static final String CLAIMS_ALGORITHM = props.getProperty("claims.algorithm");
 	private BaseProps(){}
 }
