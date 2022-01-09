@@ -6,6 +6,7 @@ import com.baomidou.mybatisplus.annotation.TableName;
 import com.medical.smart.base.pojo.entity.BaseEntity;
 import lombok.Data;
 
+import java.util.Date;
 /**
 * <b>代码生成器实体类</b>
 * @author 王晗
@@ -18,7 +19,7 @@ public class ${className} extends BaseEntity {
 		/**
 		* ${property.comment}
 		*/
-		@@TableField(value="${property.name}")
-		private ${property.typy} ${property.name};
+		@TableField(value="${property.name}")
+		private ${property.type} ${property.name};
 	</#list>
 }

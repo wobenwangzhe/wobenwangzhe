@@ -26,18 +26,13 @@ public class ConnectionUtil {
 	public static Connection getConnection(){
 		Connection connection = threadLocal.get();
 		if(connection==null){
-			synchronized (connection){
-				if(connection==null){
-					try {
-						connection = DriverManager.getConnection(url, username, password);
-						threadLocal.set(connection);
-					} catch (SQLException e) {
-						e.printStackTrace();
-					}
-				}
+			try {
+				connection = DriverManager.getConnection(url, username, password);
+				threadLocal.set(connection);
+			} catch (SQLException e) {
+				e.printStackTrace();
 			}
 		}
-
 		return connection;
 	}
 

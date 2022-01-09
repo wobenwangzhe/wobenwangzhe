@@ -5,7 +5,8 @@ import com.baomidou.mybatisplus.annotation.TableName;
 import com.medical.smart.base.pojo.entity.BaseEntity;
 import lombok.Data;
 
-import java.io.Serializable;
+
+
 /**
  * <b>系统功能-数据元值域代码实体信息类</b>
  * @author 王晗

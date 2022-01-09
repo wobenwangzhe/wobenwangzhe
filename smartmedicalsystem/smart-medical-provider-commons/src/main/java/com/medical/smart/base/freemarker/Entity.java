@@ -25,4 +25,14 @@ public class Entity {
 	 * 表的字段查询结果集合
 	 */
 	private List<Result> propertyList;
+
+	public Entity() {
+	}
+
+	public Entity(String tableName, String className, String packageName, List<Result> propertyList) {
+		this.tableName = tableName;
+		this.className = className;
+		this.packageName = packageName;
+		this.propertyList = propertyList;
+	}
 }
