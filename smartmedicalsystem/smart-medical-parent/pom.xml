@@ -9,6 +9,8 @@
   <modules>
     <module>../smart-medical-consumer-system</module>
 	  <module>../smart-medical-provider-system</module>
+	  <module>../smart-medical-consumer-emr</module>
+    <module>../smart-medical-provider-emr</module>
   </modules>
 
   <groupId>com.medical.smart</groupId>

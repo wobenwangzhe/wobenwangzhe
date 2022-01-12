@@ -1,0 +1,8 @@
+server:
+  port: 20160
+spring:
+  application:
+    #### 项目名
+    name: smart-medical-provider-emr
+  profiles:
+    active: commons,data

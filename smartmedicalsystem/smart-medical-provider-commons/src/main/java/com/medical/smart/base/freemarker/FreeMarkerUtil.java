@@ -1,18 +1,12 @@
 package com.medical.smart.base.freemarker;
 
 
-import com.medical.smart.system.admin.pojo.entity.Admin;
+import com.medical.smart.base.freemarker.base.Entity;
 import freemarker.template.Configuration;
 import freemarker.template.Template;
-import jdk.nashorn.internal.ir.SplitReturn;
-import org.apache.commons.configuration.interpol.ConfigurationInterpolator;
 import org.springframework.util.ResourceUtils;
 
 import java.io.*;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 
 public class FreeMarkerUtil {
 	/**
@@ -30,7 +24,7 @@ public class FreeMarkerUtil {
 			//获得模版文件所在文件夹目录
 			String freeMarkerPath = ResourceUtils.getURL("classpath:").getPath() + "freemarker";
 			//F:/smartmedicalsystem/smartmedicalsystem/smart-medical-provider-commons/target/classes/freemarker
-			System.out.println("模板所在路径:"+freeMarkerPath);
+			//System.out.println("模板所在路径:"+freeMarkerPath);
 			//设定 Freemarker Configuration的模板路径
 			config.setDirectoryForTemplateLoading(new File(freeMarkerPath));
 			//设定生成的文件编码格式
@@ -42,7 +36,7 @@ public class FreeMarkerUtil {
 			targetPath=targetPath.substring(0, targetPath.indexOf("target/classes/"));
 			///F:/smartmedicalsystem/smartmedicalsystem/smart-medical-provider-commons/
 			targetPath = targetPath + "src/main/java/"+pathStr;
-			System.out.println("生成文件位置:"+targetPath);
+			System.out.println("生成实体类位置:"+targetPath);
 
 			//根据路径和生成文件创建对应的File文件
 			File targetFile = new File(targetPath+entity.getClassName()+".java");
@@ -51,6 +45,7 @@ public class FreeMarkerUtil {
 
 			// 使用 Freemarker 生成对应的文件
 			template.process(entity, bw);
+			System.out.println(entity.getClassName()+"已生成完毕.");
 			bw.close();
 			return true;
 		} catch (Exception e) {

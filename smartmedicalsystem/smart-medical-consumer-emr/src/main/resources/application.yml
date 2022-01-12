@@ -1,0 +1,10 @@
+#### 配置端口号
+server:
+  port: 20100
+spring:
+  profiles:
+    #### 使用的 commons 来自 smart-medical-comsumer-commons
+    active: commons
+  application:
+    #### 项目名
+    name: smart-medical-consumer-emr

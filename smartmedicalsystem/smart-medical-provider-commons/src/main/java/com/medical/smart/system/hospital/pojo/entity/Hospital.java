@@ -1,105 +1,111 @@
 package com.medical.smart.system.hospital.pojo.entity;
 
+import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableField;
+import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import com.medical.smart.base.pojo.entity.BaseEntity;
 import lombok.Data;
 
+import java.util.Date;
 /**
- * <b>系统功能-医院实体信息</b>
- * @author 王晗
- * @version 1.0.0
- */
+* <b>代码生成器实体类-医院信息表</b>
+* @author 王晗
+* @version 1.0.0
+*/
 @Data
 @TableName(value = "sys_hospital")
 public class Hospital extends BaseEntity {
-	private static final long serialVersionUID = 5797642131611108710L;
+	private static final long serialVersionUID = 1L;
 	/**
-	 * 主键
-	 */
-	@TableField
+	* 主键
+	*/
+	@TableId(type = IdType.AUTO)
 	private Long id;
+
 	/**
-	 * 名称
-	 */
-	@TableField
+	* 机构名称
+	*/
+	@TableField(value="name")
 	private String name;
 	/**
-	 * 上级主管机构
-	 */
-	@TableField
+	* 上级主管机构名称
+	*/
+	@TableField(value="authority")
 	private String authority;
 	/**
-	 * 组织机构代码
-	 */
-	@TableField
+	* 组织机构代码
+	*/
+	@TableField(value="orgCode")
 	private String orgCode;
 	/**
-	 * 机构负责人
-	 */
-	@TableField
-	private String chare;
+	* 机构负责人
+	*/
+	@TableField(value="orgLeader")
+	private String orgLeader;
 	/**
-	 * 标示地址类别编码
-	 */
-	@TableField(value = "addressCatCode")
-	private String addressCatCode;
+	* 标识地址类别的代码
+	*/
+	@TableField(value="addrCatCode")
+	private String addrCatCode;
 	/**
-	 * 所在省
-	 */
-	@TableField
-	private String provence;
+	* 地址-省（自治区、直辖市）
+	*/
+	@TableField(value="province")
+	private String province;
 	/**
-	 * 所在市
-	 */
-	@TableField
+	* 地址-市（地区）
+	*/
+	@TableField(value="city")
 	private String city;
 	/**
-	 * 所在县、区
-	 */
-	@TableField
-	private String country;
+	* 地址-县（区）
+	*/
+	@TableField(value="county")
+	private String county;
 	/**
-	 * 所在乡、镇、社区
-	 */
-	@TableField
-	private String town;
+	* 地址-乡（镇、街道办事处）
+	*/
+	@TableField(value="countryside")
+	private String countryside;
 	/**
-	 * 所在村、街道
-	 */
-	@TableField
+	* 地址-村（街、路、弄等）
+	*/
+	@TableField(value="village")
 	private String village;
 	/**
-	 * 门牌号
-	 */
-	@TableField
+	* 地址-门牌号码
+	*/
+	@TableField(value="doorNo")
 	private String doorNo;
 	/**
-	 * 邮政编码
-	 */
-	@TableField
-	private String zipCode;
+	* 邮政编码
+	*/
+	@TableField(value="zipcode")
+	private String zipcode;
 	/**
-	 * 行政划分区域编码
-	 */
-	@TableField
-	private String divisionCode;
+	* 行政区划代码
+	*/
+	@TableField(value="division")
+	private String division;
 	/**
-	 * 电话号码类型编码
-	 */
-	@TableField
-	private String telephoneCode;
+	* 联系电话-类别信息
+	*/
+	@TableField(value="phoneCat")
+	private String phoneCat;
 	/**
-	 * 电话号码
-	 */
-	@TableField
-	private String thlephone;
+	* 联系电话-号码
+	*/
+	@TableField(value="phone")
+	private String phone;
 	/**
-	 * 电子邮件
-	 */
-	@TableField
+	* 电子邮件地址
+	*/
+	@TableField(value="email")
 	private String email;
-
-
-
+	/**
+	* 修改时间
+	*/
+	@TableField(value="modifiedTime")
+	private Date modifiedTime;
 }
