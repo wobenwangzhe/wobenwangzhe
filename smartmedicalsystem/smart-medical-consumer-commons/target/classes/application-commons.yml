@@ -11,3 +11,7 @@ eureka:
   client:
     service-url:
       defaultZone: http://localhost:8888/eureka/
+feign:
+  circuitbreaker:
+    #### 开启熔断机制
+    enabled: true

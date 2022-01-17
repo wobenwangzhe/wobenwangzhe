@@ -7,7 +7,7 @@ import org.springframework.stereotype.Component;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2022-01-12T20:31:37+0800",
+    date = "2022-01-17T13:59:35+0800",
     comments = "version: 1.3.0.Final, compiler: javac, environment: Java 1.8.0_301 (Oracle Corporation)"
 )
 @Component
@@ -29,6 +29,7 @@ public class PojoMapperImpl implements PojoMapper {
         adminVO.setId( admin.getId() );
         adminVO.setNo( admin.getNo() );
         adminVO.setName( admin.getName() );
+        adminVO.setAvatar( admin.getAvatar() );
         adminVO.setCellphone( admin.getCellphone() );
         adminVO.setPassword( admin.getPassword() );
 

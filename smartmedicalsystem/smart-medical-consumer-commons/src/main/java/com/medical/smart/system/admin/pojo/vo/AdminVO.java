@@ -36,6 +36,11 @@ public class AdminVO extends BaseVO {
 	@ApiModelProperty(value = "姓名")
 	private String name;
 	/**
+	 * 头像
+	 */
+	@ApiModelProperty(value = "avatar")
+	private String avatar;
+	/**
 	 * 手机号码
 	 */
 	@ApiModelProperty(value = "手机号码")

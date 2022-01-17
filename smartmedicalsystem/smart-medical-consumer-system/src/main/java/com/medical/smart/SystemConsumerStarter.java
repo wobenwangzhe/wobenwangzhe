@@ -10,8 +10,11 @@ import org.springframework.cloud.openfeign.EnableFeignClients;
  * @author 王晗
  * @version 1.0.0
  */
+//启动类注解
 @SpringBootApplication
+//远程调用注解
 @EnableFeignClients
+//在注册中心注册的注解
 @EnableEurekaClient
 public class SystemConsumerStarter {
 

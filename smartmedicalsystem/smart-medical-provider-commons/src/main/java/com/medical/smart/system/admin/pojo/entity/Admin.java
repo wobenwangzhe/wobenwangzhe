@@ -34,6 +34,11 @@ public class Admin extends BaseEntity {
 	@TableField(value="name")
 	private String name;
 	/**
+	 * 头像
+	 */
+	@TableField(value = "avatar")
+	private String avatar;
+	/**
 	* 手机号码
 	*/
 	@TableField(value="cellphone")

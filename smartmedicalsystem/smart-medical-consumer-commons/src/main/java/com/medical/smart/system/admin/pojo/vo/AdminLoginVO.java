@@ -33,4 +33,7 @@ public class AdminLoginVO implements Serializable {
 	@ApiModelProperty(required = true,value = "登录密码,符合[A-Za-z0-9_#]{6,}",example = "123456")
 	private String password;
 
+	@ApiModelProperty(value = "token令牌")
+	private String token;
+
 }

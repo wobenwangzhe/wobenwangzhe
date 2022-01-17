@@ -24,11 +24,7 @@
           <artifactId>smart-medical-consumer-commons</artifactId>
           <version>${parent.version}</version>
           <exclusions>
-              <!-- 生产者项目不需要swagger依赖 -->
-              <exclusion>
-                  <groupId>io.springfox</groupId>
-                  <artifactId>springfox-boot-starter</artifactId>
-              </exclusion>
+
               <!-- 生产者项目不需要远程调用 -->
               <exclusion>
                   <groupId>org.springframework.cloud</groupId>
@@ -38,6 +34,11 @@
               <exclusion>
                   <groupId>org.springframework.cloud</groupId>
                   <artifactId>spring-cloud-starter-netflix-hystrix</artifactId>
+              </exclusion>
+              <!-- 生产者项目不需要spring validation -->
+              <exclusion>
+                  <groupId>org.springframework.boot</groupId>
+                  <artifactId>spring-boot-starter-validation</artifactId>
               </exclusion>
           </exclusions>
       </dependency>
