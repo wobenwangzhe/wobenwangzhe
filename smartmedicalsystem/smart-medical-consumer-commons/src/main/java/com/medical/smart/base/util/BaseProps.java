@@ -60,5 +60,14 @@ public class BaseProps {
 	 * <b>token头部alg中的值</b>
 	 */
 	public static final String CLAIMS_ALGORITHM = props.getProperty("claims.algorithm");
+	/**
+	 * <b>数据库中数据可用</b>
+	 */
+	public static final String STATUS_EXIST = props.getProperty("status.exist");
+	/**
+	 * <b>数据库中数据不可用</b>
+	 */
+	public static final String STATUS_NOT_EXIST = props.getProperty("status.notexist");
+
 	private BaseProps(){}
 }

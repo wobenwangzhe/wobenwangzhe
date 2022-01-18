@@ -5,6 +5,10 @@ import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 
+import javax.sound.midi.MetaEventListener;
+import java.io.Serializable;
+import java.util.List;
+
 /**
  * <b>系统功能-菜单视图信息</b>
  * @author 王晗
@@ -20,33 +24,48 @@ public class MenuVO extends BaseVO {
 	@ApiModelProperty(value = "主键")
 	private Long id;
 	/**
-	 * 上级菜单编码
+	 * 菜单文本
 	 */
-	@ApiModelProperty(value = "上级菜单编码")
-	private String parent;
-	/**
-	 * 编码
-	 */
-	@ApiModelProperty(value = "编码")
-	private String code;
-	/**
-	 * 名称
-	 */
-	@ApiModelProperty(value = "名称")
+	@ApiModelProperty(value = "菜单文本")
 	private String name;
 	/**
-	 * 菜单功能链接地址
+	 * 菜单编码
 	 */
-	@ApiModelProperty(value = "菜单功能链接地址")
-	private String url;
+	@ApiModelProperty(value = "菜单编码")
+	private String code;
 	/**
-	 * 菜单图标
+	 * 链接地址
 	 */
-	@ApiModelProperty(value = "菜单图标")
-	private String icon;
+	@ApiModelProperty(value = "链接地址")
+	private String path;
 	/**
-	 * 排序
+	 * 组件名称
 	 */
-	@ApiModelProperty(value = "排序")
-	private int sort;
+	@ApiModelProperty(value = "组件")
+	private String component;
+
+	@ApiModelProperty(value = "路由页面显示图标")
+	private Meta meta;
+
+	@ApiModelProperty(value = "下级菜单")
+	private List<MenuVO> children;
+
+	/**
+	 * 路由页面显示图标内部类
+	 */
+	@Data
+	@ApiModel(value = "MenuVO.Meta", description = "菜单-路由页面显示图标内部类")
+	public static class Meta implements Serializable{
+		private static final long serialVersionUID = 4571939654021640704L;
+		/**
+		 * 菜单标题
+		 */
+		@ApiModelProperty(value = "菜单标题")
+		private String title;
+		/**
+		 * 菜单图标样式
+		 */
+		@ApiModelProperty(value = "菜单图标样式")
+		private String icon;
+	}
 }

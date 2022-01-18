@@ -10,7 +10,10 @@ import com.medical.smart.base.util.RedisUtil;
 import com.medical.smart.base.util.TokenBuilder;
 import com.medical.smart.system.admin.pojo.vo.AdminLoginVO;
 import com.medical.smart.system.admin.pojo.vo.AdminVO;
+import com.medical.smart.system.admin.pojo.vo.MenuVO;
+import com.medical.smart.system.admin.pojo.vo.RoleVO;
 import com.medical.smart.system.admin.transport.AdminTransport;
+import com.medical.smart.system.admin.transport.MenuTransport;
 import com.netflix.eureka.cluster.PeerEurekaNode;
 import com.sun.javafx.collections.MappingChange;
 import io.swagger.annotations.Api;
@@ -23,6 +26,7 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -35,7 +39,14 @@ import java.util.Map;
 @RequestMapping("/system/consumer/admin")
 @Api(tags = "系统功能-系统用户控制层")
 public class AdminController extends BaseController {
-
+	/**
+	 * 系统菜单功能传输层接口
+	 */
+	@Autowired
+	private MenuTransport menuTransport;
+	/**
+	 * 系统管理员功能传输层接口
+	 */
 	@Autowired
 	private AdminTransport adminTransport;
 
@@ -69,6 +80,13 @@ public class AdminController extends BaseController {
 		if(!adminVO.getPassword().equals(inputPassword)){
 			return ResponseVO.error("手机号码或者用户密码不正确");
 		}
+
+		//用户的角色,只保存了编码
+		RoleVO roleVO = adminVO.getRole();
+		//将用户的功能权限查询出来
+		List<MenuVO> menuVOList = menuTransport.getMenuVOListByRoleCode(roleVO);
+		//将用户功能权限列表添加到用户视图中
+		adminVO.setMenuVOList(menuVOList);
 
 		//此时用户登录成功,生成唯一令牌 token
 		Map<String,Object> claimMap = new HashMap<>(BaseProps.MAP_SMALL);
@@ -109,7 +127,6 @@ public class AdminController extends BaseController {
 
 		//从 redis 中获得用户视图信息
 		adminVO = (AdminVO) RedisUtil.find(token,AdminVO.class);
-
 		if(adminVO!=null){
 			//用户已登录
 			return ResponseVO.success(adminVO);

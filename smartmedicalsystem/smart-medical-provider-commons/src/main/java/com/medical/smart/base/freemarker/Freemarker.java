@@ -70,7 +70,7 @@ public class Freemarker {
 							|| "createdBy".equalsIgnoreCase(name)
 							|| "createdTime".equalsIgnoreCase(name)
 							|| "modifiedBy".equalsIgnoreCase(name)
-							|| "modifiedTime".equalsIgnoreCase(type)) {
+							|| "modifiedTime".equalsIgnoreCase(name)) {
 						continue;
 					}
 					//将sql类型,修改为java对应的类型

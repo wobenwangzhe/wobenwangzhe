@@ -1,4 +1,4 @@
-package com.medical.smart.base.freemarker.result;
+package com.medical.smart.system.admin.pojo.entity;
 
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableField;
@@ -15,7 +15,7 @@ import java.util.Date;
 */
 @Data
 @TableName(value = "sys_role_menu")
-public class RoleMenu extends BaseEntity {
+public class RoleMenu {
 	private static final long serialVersionUID = 1L;
 	/**
 	* 角色信息

@@ -1,11 +1,12 @@
 package com.medical.smart.system.admin.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.medical.smart.base.util.BaseProps;
 import com.medical.smart.system.admin.dao.AdminDao;
 import com.medical.smart.system.admin.service.AdminService;
 import com.medical.smart.system.admin.pojo.entity.Admin;
 import com.medical.smart.system.admin.pojo.vo.AdminVO;
-import com.medical.smart.util.PojoMapper;
+import com.medical.smart.system.admin.util.SystemAdminPojoMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -31,13 +32,14 @@ public class AdminServiceImpl implements AdminService {
 	public AdminVO getAdminVOByCellphone(String cellphone) throws Exception {
 		//查询条件
 		QueryWrapper<Admin> query =new QueryWrapper<>();
-		query.eq("cellphone", cellphone);
+		query.eq("cellphone", cellphone)
+				.eq("status", BaseProps.STATUS_EXIST);
 		// TODO: 2022/1/6 补充查询后类型转换的方法 
 		//查询
 		Admin admin = adminDao.selectOne(query);
 		//如果查询到结果
 		if(admin!=null && admin.getId()!=null){
-			AdminVO adminVO = PojoMapper.INSTANCE.parseToAdminVO(admin);
+			AdminVO adminVO = SystemAdminPojoMapper.INSTANCE.parseToAdminVO(admin);
 			return adminVO;
 		}
 		//未查询到

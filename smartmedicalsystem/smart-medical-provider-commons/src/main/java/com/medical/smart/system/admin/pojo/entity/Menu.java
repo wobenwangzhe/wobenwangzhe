@@ -22,27 +22,36 @@ public class Menu extends BaseEntity {
 	*/
 	@TableId(type = IdType.AUTO)
 	private Long id;
-
 	/**
-	* 角色编码
+	 * 上级菜单
+	 */
+	@TableField(value="parent")
+	private String parent;
+	/**
+	 * 菜单文本
+	 */
+	@TableField(value="name")
+	private String name;
+	/**
+	* 菜单编码
 	*/
 	@TableField(value="code")
 	private String code;
 	/**
-	* 上级菜单
-	*/
-	@TableField(value="parent")
-	private String parent;
-	/**
-	* 菜单文本
-	*/
-	@TableField(value="text")
-	private String text;
-	/**
 	* 链接地址
 	*/
-	@TableField(value="url")
-	private String url;
+	@TableField(value="path")
+	private String path;
+	/**
+	 * 组件名称
+	 */
+	@TableField
+	private String component;
+	/**
+	 * 菜单标题
+	 */
+	@TableField
+	private String title;
 	/**
 	* 菜单图标样式
 	*/
@@ -53,9 +62,5 @@ public class Menu extends BaseEntity {
 	*/
 	@TableField(value="sort")
 	private Long sort;
-	/**
-	* 修改时间
-	*/
-	@TableField(value="modifiedTime")
-	private Date modifiedTime;
+
 }

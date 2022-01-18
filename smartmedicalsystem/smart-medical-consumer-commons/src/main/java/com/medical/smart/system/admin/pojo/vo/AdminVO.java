@@ -10,6 +10,8 @@ import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 
+import java.util.List;
+
 /**
  * <b>系统功能-系统人员视图信息</b>
  * 主键使用雪花算法生成
@@ -59,30 +61,28 @@ public class AdminVO extends BaseVO {
 	 * 学历
 	 */
 	@ApiModelProperty(value = "学历")
-	private EducationVO education;
+	private String education;
 	/**
 	 * 身份
 	 */
 	@ApiModelProperty(value = "身份")
-	private IdentityVO identity;
+	private String identity;
 	/**
 	 * 所在部门
 	 */
 	@ApiModelProperty(value = "所在部门")
-	private DepartmentVO department;
-	/**
-	 * 工作职务
-	 */
-	@ApiModelProperty(value = "工作职务")
-	private PositionVO position;
+	private String department;
 	/**
 	 * 专业技术职务
 	 */
 	@ApiModelProperty(value = "专业技术职务")
-	private String proTitle;
+	private String techPostTitle;
 	/**
 	 * 专业技术职务等级
 	 */
 	@ApiModelProperty(value = "专业技术职务等级")
-	private ProRankVO proRank;
+	private String techPostRank;
+
+	@ApiModelProperty(value = "用户角色对应菜单列表")
+	private List<MenuVO> menuVOList;
 }

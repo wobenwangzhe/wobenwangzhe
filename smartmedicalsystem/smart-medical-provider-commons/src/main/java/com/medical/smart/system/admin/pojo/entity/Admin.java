@@ -78,9 +78,4 @@ public class Admin extends BaseEntity {
 	*/
 	@TableField(value="techPostRank")
 	private String techPostRank;
-	/**
-	* 修改时间
-	*/
-	@TableField(value="modifiedTime")
-	private Date modifiedTime;
 }
