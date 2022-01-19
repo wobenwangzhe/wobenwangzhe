@@ -32,16 +32,22 @@ router.beforeEach(async(to, from, next) => {
       next({ path: '/' })
       NProgress.done()
     } else {
-      //用户去登录页面以外的页面,获得姓名
+      //用户去登录页面以外的页面,获得姓名,有姓名进页面
       const hasGetUserInfo = store.getters.name
       if (hasGetUserInfo) {
         next()
       } else {
+        //没有获得用户姓名，发送请求去后台获得用户信息
         try {
           // get user info
-          await store.dispatch('user/getInfo')
+          await store.dispatch('user/getInfo').then(() => {
+           //将动态写入store/getters 中的 routers 属性加到 router/index的constantRoutes路由后
+            //实现动态权限
+            router.options.routes = store.getters.routers
+            next()
+          })
 
-          next()
+          //next()
         } catch (error) {
           // remove token and go to login page to re-login
           await store.dispatch('user/resetToken')

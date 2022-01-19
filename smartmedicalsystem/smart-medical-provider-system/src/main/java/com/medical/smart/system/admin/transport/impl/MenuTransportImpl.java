@@ -2,6 +2,7 @@ package com.medical.smart.system.admin.transport.impl;
 
 import com.medical.smart.system.admin.pojo.vo.MenuVO;
 import com.medical.smart.system.admin.pojo.vo.RoleVO;
+import com.medical.smart.system.admin.pojo.vo.RouterVO;
 import com.medical.smart.system.admin.transport.MenuTransport;
 import com.medical.smart.system.admin.service.MenuService;
 import org.springframework.web.bind.annotation.*;
@@ -21,15 +22,15 @@ public class MenuTransportImpl implements MenuTransport {
 	private MenuService menuService;
 
 	/**
-	 * <b>根据角色查询功能权限列表</b>
+	 * <b>根据角色查询路由列表</b>
 	 *
 	 * @return
 	 * @throws Exception
 	 */
 	@Override
 	@PostMapping("/role")
-	public List<MenuVO> getMenuVOListByRoleCode(@RequestBody RoleVO roleVO) throws Exception {
-		return menuService.getMenuVOListByRoleCode(roleVO);
+	public List<RouterVO> getRouterVOListByRoleVO(@RequestBody RoleVO roleVO) throws Exception {
+		return menuService.getRouterVOListByRoleVO(roleVO);
 	}
 
 

@@ -7,6 +7,7 @@ import com.medical.smart.system.admin.pojo.entity.Menu;
 import com.medical.smart.system.admin.pojo.entity.RoleMenu;
 import com.medical.smart.system.admin.pojo.vo.MenuVO;
 import com.medical.smart.system.admin.pojo.vo.RoleVO;
+import com.medical.smart.system.admin.pojo.vo.RouterVO;
 import com.medical.smart.system.admin.util.SystemAdminPojoMapper;
 import com.medical.smart.system.admin.dao.MenuDao;
 import com.medical.smart.system.admin.dao.RoleMenuDao;
@@ -38,7 +39,7 @@ public class MenuServiceImpl implements MenuService {
 	private RoleMenuDao roleMenuDao;
 
 	/**
-	 * <b>根据角色编码查询菜单权限</b>
+	 * <b>根据角色编码查询菜单权限-路由列表</b>
 	 * 角色菜单表,list查询1次
 	 * 菜单表,遍历角色菜单表车讯结果查询1遍
 	 * @param roleVO
@@ -46,10 +47,10 @@ public class MenuServiceImpl implements MenuService {
 	 * @throws Exception
 	 */
 	@Override
-	public List<MenuVO> getMenuVOListByRoleCode(RoleVO roleVO) throws Exception {
+	public List<RouterVO> getRouterVOListByRoleVO(RoleVO roleVO) throws Exception {
 		if(roleVO==null || StrUtil.isBlank(roleVO.getCode()) ){
-			//用户的角色编码没有传入方法,
-			return new ArrayList<MenuVO>();
+			//用户的角色编码不存在,
+			return new ArrayList<RouterVO>();
 		}
 		//先在角色-菜单中间表查询角色菜单信息 roleMenuList
 		QueryWrapper<RoleMenu> queryWrapper = new QueryWrapper<>();
@@ -58,11 +59,11 @@ public class MenuServiceImpl implements MenuService {
 		List<RoleMenu> roleMenuList = roleMenuDao.selectList(queryWrapper);
 		if(roleMenuList==null || roleMenuList.size()==0){
 			//如果未查询到角色功能权限
-			return new ArrayList<MenuVO>();
+			return new ArrayList<RouterVO>();
 		}
 
-		//菜单列表
-		List<Menu> menuList = new ArrayList<>();
+		//菜单实体列表
+		List<Menu> menuList = new ArrayList<>(BaseProps.MAP_SMALL);
 		//遍历角色菜单列表,查询所有有权限的菜单
 		roleMenuList.forEach(roleMenu -> {
 			//先查询所有有权限的菜单
@@ -76,38 +77,34 @@ public class MenuServiceImpl implements MenuService {
 
 		//未查询到菜单信息
 		if(menuList==null || menuList.size()==0){
-			return null;
+			return new ArrayList<RouterVO>();
 		}
-		//接下来将一级实体菜单转成视图菜单列表
-		List<MenuVO> menuVOList = new ArrayList<>();
+		//接下来将一级实体菜单 转成 路由列表
+		List<RouterVO> routerVOList = new ArrayList<>(BaseProps.MAP_SMALL);
+		//遍历实体菜单列表,将查询到的结果,转换为 路由列表的结构
 		menuList.forEach(menu -> {
-			if(StrUtil.isBlank(menu.getParent())){
-				//该菜单没有上级菜单,便是一级菜单
-				menuVOList.add(SystemAdminPojoMapper.INSTANCE.parseToMenuVO(menu));
+			//一级菜单没有parent字段,有code
+			if(StrUtil.isBlank(menu.getParent()) &&StrUtil.isNotBlank(menu.getCode()) ){
+				//该菜单没有上级菜单,便是一级菜单,转为路由
+				RouterVO routerVO = SystemAdminPojoMapper.INSTANCE.parseToRouterVOFromMenu(menu);
+
+				//遍历实体菜单列表,找到本一级菜单下的二级菜单,添加到children中
+				List<RouterVO> children = new ArrayList<>(BaseProps.MAP_SMALL);
+				menuList.forEach(child ->{
+					//二级菜单的parent字段 与一级菜单的code字段相同
+					if(StrUtil.isNotBlank(child.getParent()) && child.getParent().equals(menu.getCode())){
+						//二级菜单转化形式后,添加到children中
+						children.add(SystemAdminPojoMapper.INSTANCE.parseToRouterVOFromMenu(child));
+					}
+				});
+
+				//将二级菜单的路由集合 children添加到一级菜单的路由 routerVO中
+				routerVO.setChildren(children);
+				//将已经包含二级路由的一级路由，添加到路由集合中
+				routerVOList.add(routerVO);
 			}
 		});
 
-		//未查询到一级菜单
-		if(menuVOList==null || menuList.size()==0){
-			return null;
-		}
-
-		//将二级菜单添加到对应的一级菜单中
-		//遍历一级菜单视图结合
-		menuVOList.forEach(menuVO -> {
-			//二级菜单视图集合
-			List<MenuVO> children = new ArrayList<>();
-			//遍历从数据库查询到的实体菜单集合
-			menuList.forEach(menu -> {
-				if(StrUtil.isNotBlank(menu.getParent()) && menuVO.getId().equals(Long.parseLong(menu.getParent()))){
-					//这个菜单实体,是对应一级菜单的子菜单,添加到children中
-					children.add(SystemAdminPojoMapper.INSTANCE.parseToMenuVO(menu));
-				}
-			});
-			//将二级菜单视图集合children添加到一级菜单集合中
-			menuVO.setChildren(children);
-		});
-
-		return menuVOList;
+		return routerVOList;
 	}
 }

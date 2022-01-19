@@ -24,7 +24,11 @@
           <artifactId>smart-medical-consumer-commons</artifactId>
           <version>${parent.version}</version>
           <exclusions>
-
+              <!--
+                    虽然生产者项目不需要使用 swagge 注解,即不需要 springfox 依赖
+                    但是由于smart-medical-consumer-commons依赖,生产者项目也可以调用到视图对象
+                    视图对象有 swagger 的注解,所以生产者项目不能取消 springfox 依赖
+               -->
               <!-- 生产者项目不需要远程调用 -->
               <exclusion>
                   <groupId>org.springframework.cloud</groupId>

@@ -14,4 +14,4 @@ eureka:
 feign:
   circuitbreaker:
     #### 开启熔断机制
-    enabled: true
+    enabled: false

@@ -1,6 +1,7 @@
 package com.medical.smart.base.pojo.vo;
 
 import com.medical.smart.base.pojo.enums.ResponseCode;
+import com.medical.smart.system.admin.pojo.vo.AdminInfo;
 import com.medical.smart.system.admin.pojo.vo.AdminLoginVO;
 import com.medical.smart.system.admin.pojo.vo.AdminVO;
 import io.swagger.annotations.ApiModel;
@@ -63,6 +64,15 @@ public class ResponseVO implements Serializable {
 	public static ResponseVO success(AdminVO adminVO){
 		return new ResponseVO(ResponseCode.RESPONSECODE_SUCCESS, adminVO);
 	}
+	/**
+	 * 系统响应成功-返回系统登录权限信息
+	 * @param adminInfo
+	 * @return
+	 */
+	public static ResponseVO success(AdminInfo adminInfo){
+		return new ResponseVO(ResponseCode.RESPONSECODE_SUCCESS, adminInfo);
+	}
+
 
 	/**
 	 * <b>获得系统用户未进行认证响应视图信息</b>

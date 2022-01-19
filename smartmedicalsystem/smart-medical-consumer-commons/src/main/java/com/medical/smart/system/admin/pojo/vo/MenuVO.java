@@ -44,28 +44,16 @@ public class MenuVO extends BaseVO {
 	@ApiModelProperty(value = "组件")
 	private String component;
 
-	@ApiModelProperty(value = "路由页面显示图标")
-	private Meta meta;
-
 	@ApiModelProperty(value = "下级菜单")
 	private List<MenuVO> children;
-
 	/**
-	 * 路由页面显示图标内部类
+	 * 菜单标题
 	 */
-	@Data
-	@ApiModel(value = "MenuVO.Meta", description = "菜单-路由页面显示图标内部类")
-	public static class Meta implements Serializable{
-		private static final long serialVersionUID = 4571939654021640704L;
-		/**
-		 * 菜单标题
-		 */
-		@ApiModelProperty(value = "菜单标题")
-		private String title;
-		/**
-		 * 菜单图标样式
-		 */
-		@ApiModelProperty(value = "菜单图标样式")
-		private String icon;
-	}
+	@ApiModelProperty(value = "菜单标题")
+	private String title;
+	/**
+	 * 菜单图标样式
+	 */
+	@ApiModelProperty(value = "菜单图标样式")
+	private String icon;
 }

@@ -2,6 +2,7 @@ package com.medical.smart.system.admin.service;
 
 import com.medical.smart.system.admin.pojo.vo.MenuVO;
 import com.medical.smart.system.admin.pojo.vo.RoleVO;
+import com.medical.smart.system.admin.pojo.vo.RouterVO;
 
 import java.util.List;
 
@@ -12,10 +13,10 @@ import java.util.List;
  */
 public interface MenuService {
 	/**
-	 * <b>根据角色查询菜单权限</b>
+	 * <b>根据角色查询菜单权限-路由列表</b>
 	 * @param roleVO
 	 * @return
 	 * @throws Exception
 	 */
-	List<MenuVO> getMenuVOListByRoleCode(RoleVO roleVO) throws Exception;
+	List<RouterVO> getRouterVOListByRoleVO(RoleVO roleVO) throws Exception;
 }

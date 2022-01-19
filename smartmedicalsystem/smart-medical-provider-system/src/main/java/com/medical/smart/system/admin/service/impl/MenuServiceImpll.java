@@ -11,6 +11,7 @@ import com.medical.smart.system.admin.pojo.vo.MenuVO;
 import com.medical.smart.system.admin.pojo.vo.RoleVO;
 import com.medical.smart.system.admin.service.MenuService;
 import com.medical.smart.system.admin.util.SystemAdminPojoMapper;
+import javafx.scene.control.MenuItem;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -26,7 +27,7 @@ import java.util.List;
 
 @Transactional
 
-public class MenuServiceImpll implements MenuService {
+public class MenuServiceImpll{
 	/**
 	 * 菜单数据持久层接口
 	 */
@@ -47,8 +48,8 @@ public class MenuServiceImpll implements MenuService {
 	 * @return
 	 * @throws Exception
 	 */
-	@Override
-	public List<MenuVO> getMenuVOListByRoleCode(RoleVO roleVO) throws Exception {
+
+	public List<MenuVO> getMenuVOListByRole(RoleVO roleVO) throws Exception {
 		if(roleVO==null || StrUtil.isBlank(roleVO.getCode()) ){
 			//用户的角色编码没有传入方法,
 			return new ArrayList<MenuVO>();
@@ -73,7 +74,7 @@ public class MenuServiceImpll implements MenuService {
 			query.eq("status", BaseProps.STATUS_EXIST)
 					.eq("code", roleMenu.getMenu())
 					.isNull("parent").or().eq("parent", "");
-			//查询到的一级菜单列表
+			//将查询到一级菜单,转变成菜单视图再添加到菜单视图列表中
 			menuList.add(menuDao.selectOne(query));
 		});
 

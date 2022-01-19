@@ -1,7 +1,6 @@
 package com.medical.smart.system.admin.transport;
 
 
-import com.medical.smart.system.admin.fallback.AdminFallBack;
 import com.medical.smart.system.admin.pojo.vo.AdminVO;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.*;
@@ -11,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
  * @author 王晗
  * @version 1.0.0
  */
-@FeignClient(name = "smart-medical-provider-system",fallback = AdminFallBack.class)
+@FeignClient(name = "smart-medical-provider-system")
 public interface AdminTransport {
 
 	/**

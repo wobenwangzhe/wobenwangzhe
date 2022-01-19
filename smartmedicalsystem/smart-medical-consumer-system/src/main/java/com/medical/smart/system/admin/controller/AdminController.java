@@ -8,10 +8,7 @@ import com.medical.smart.base.pojo.vo.ResponseVO;
 import com.medical.smart.base.util.BaseProps;
 import com.medical.smart.base.util.RedisUtil;
 import com.medical.smart.base.util.TokenBuilder;
-import com.medical.smart.system.admin.pojo.vo.AdminLoginVO;
-import com.medical.smart.system.admin.pojo.vo.AdminVO;
-import com.medical.smart.system.admin.pojo.vo.MenuVO;
-import com.medical.smart.system.admin.pojo.vo.RoleVO;
+import com.medical.smart.system.admin.pojo.vo.*;
 import com.medical.smart.system.admin.transport.AdminTransport;
 import com.medical.smart.system.admin.transport.MenuTransport;
 import com.netflix.eureka.cluster.PeerEurekaNode;
@@ -81,13 +78,6 @@ public class AdminController extends BaseController {
 			return ResponseVO.error("手机号码或者用户密码不正确");
 		}
 
-		//用户的角色,只保存了编码
-		RoleVO roleVO = adminVO.getRole();
-		//将用户的功能权限查询出来
-		List<MenuVO> menuVOList = menuTransport.getMenuVOListByRoleCode(roleVO);
-		//将用户功能权限列表添加到用户视图中
-		adminVO.setMenuVOList(menuVOList);
-
 		//此时用户登录成功,生成唯一令牌 token
 		Map<String,Object> claimMap = new HashMap<>(BaseProps.MAP_SMALL);
 		//token载荷信息
@@ -99,9 +89,10 @@ public class AdminController extends BaseController {
 		if(RedisUtil.save(token, adminVO, BaseProps.AUTH_SEC)){
 			//登录成功,将 token 返回给用户,绑定到 http请求的消息头部分的:Authorization中
 			//response.setHeader(BaseProps.TOKEN_SEAT,token);
-			//token放在返回信息中,由前端放在httpservlet中
-			adminLoginVO.setToken(token);
-			return ResponseVO.success(adminLoginVO);
+			//token放在返回信息中,由前端放在httpservlet中,只传递必要的token
+			AdminLoginVO login = new AdminLoginVO();
+			login.setToken(token);
+			return ResponseVO.success(login);
 		}
 
 		return ResponseVO.error("系统用户登录失败");
@@ -122,17 +113,22 @@ public class AdminController extends BaseController {
 		Map<String, Object> claimMap = TokenBuilder.verifyToken(token);
 		if( claimMap ==null ){
 			//token 验证不通过
-			return ResponseVO.illegalToken("token非法");
+			return ResponseVO.illegalToken("token非法,请重新登录");
 		}
-
 		//从 redis 中获得用户视图信息
 		adminVO = (AdminVO) RedisUtil.find(token,AdminVO.class);
-		if(adminVO!=null){
-			//用户已登录
-			return ResponseVO.success(adminVO);
+		if(adminVO==null || adminVO.getId()==null){
+			//redis中没有保存用户信息
+			return ResponseVO.expiredToken("用户登录过期,请重新登录");
 		}
-		//用户未登录
-		return ResponseVO.illegalToken("用户登录超时,请重新登录");
+		//获得用户的角色信息
+		RoleVO roleVO = adminVO.getRole();
+		//根据角色获取路由列表
+		List<RouterVO> routerVOList = menuTransport.getRouterVOListByRoleVO(roleVO);
+
+		//返回用户信息和 路由列表
+		AdminInfo adminInfo = new AdminInfo(adminVO,routerVOList);
+		return  ResponseVO.success(adminInfo);
 	}
 
 

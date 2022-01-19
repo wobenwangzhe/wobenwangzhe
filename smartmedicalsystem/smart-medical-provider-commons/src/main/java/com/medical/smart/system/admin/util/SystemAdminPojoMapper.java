@@ -4,6 +4,7 @@ import com.medical.smart.system.admin.pojo.entity.Admin;
 import com.medical.smart.system.admin.pojo.entity.Menu;
 import com.medical.smart.system.admin.pojo.vo.AdminVO;
 import com.medical.smart.system.admin.pojo.vo.MenuVO;
+import com.medical.smart.system.admin.pojo.vo.RouterVO;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.Mappings;
@@ -12,7 +13,7 @@ import org.mapstruct.factory.Mappers;
 import java.util.List;
 
 /**
- * <b>系统功能 - 系统用户相关类型转换</b>
+ * <b>系统功能 - 系统功能下相关类型转换</b>
  * @author 王晗
  * @version 1.0.0
  */
@@ -33,12 +34,7 @@ public interface SystemAdminPojoMapper {
 	 * @param entity 实体菜单类
 	 * @return 视图菜单类
 	 */
-	@Mappings({
-			@Mapping(source = "title",target = "meta.title"),
-			@Mapping(source = "icon",target = "meta.icon")
-	})
 	MenuVO parseToMenuVO(Menu entity);
-
 
 	/**
 	 * <b>菜单列表 实体转视图</b>
@@ -48,4 +44,15 @@ public interface SystemAdminPojoMapper {
 	 */
 	List<MenuVO> parseToMenuVOList (List<Menu> menuList);
 
+	/**
+	 * <b>菜单实体 -> 路由视图 </b>
+	 * 将菜单实体中的 网页标题 title 和 图标 icon 保存在路由视图的 meta 中
+	 * @param menu 菜单实体
+	 * @return 路由视图
+	 */
+	@Mappings({
+			@Mapping(source = "title",target = "meta.title"),
+			@Mapping(source = "icon",target = "meta.icon")
+	})
+	RouterVO parseToRouterVOFromMenu(Menu menu);
 }

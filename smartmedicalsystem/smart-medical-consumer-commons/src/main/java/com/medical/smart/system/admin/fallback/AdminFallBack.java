@@ -10,11 +10,10 @@ import org.springframework.web.bind.annotation.RestController;
 import javax.websocket.server.PathParam;
 
 /**
- * <b>系统功能-系统用户回调类</b>
+ * <b>系统功能-系统用户熔断类</b>
  * @author 王晗
  * @version 1.0.0
  */
-@Component
 public class AdminFallBack implements AdminTransport {
 
 	/**

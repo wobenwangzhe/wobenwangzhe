@@ -4,8 +4,9 @@ import com.medical.smart.system.admin.pojo.entity.Admin;
 import com.medical.smart.system.admin.pojo.entity.Menu;
 import com.medical.smart.system.admin.pojo.vo.AdminVO;
 import com.medical.smart.system.admin.pojo.vo.MenuVO;
-import com.medical.smart.system.admin.pojo.vo.MenuVO.Meta;
 import com.medical.smart.system.admin.pojo.vo.RoleVO;
+import com.medical.smart.system.admin.pojo.vo.RouterVO;
+import com.medical.smart.system.admin.pojo.vo.RouterVO.Meta;
 import java.util.ArrayList;
 import java.util.List;
 import javax.annotation.Generated;
@@ -13,7 +14,7 @@ import org.springframework.stereotype.Component;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2022-01-18T12:28:20+0800",
+    date = "2022-01-19T15:03:25+0800",
     comments = "version: 1.3.0.Final, compiler: javac, environment: Java 1.8.0_301 (Oracle Corporation)"
 )
 @Component
@@ -56,7 +57,6 @@ public class SystemAdminPojoMapperImpl implements SystemAdminPojoMapper {
 
         MenuVO menuVO = new MenuVO();
 
-        menuVO.setMeta( menuToMeta( entity ) );
         menuVO.setStatus( entity.getStatus() );
         menuVO.setCreatedBy( entity.getCreatedBy() );
         menuVO.setCreatedTime( entity.getCreatedTime() );
@@ -67,6 +67,8 @@ public class SystemAdminPojoMapperImpl implements SystemAdminPojoMapper {
         menuVO.setCode( entity.getCode() );
         menuVO.setPath( entity.getPath() );
         menuVO.setComponent( entity.getComponent() );
+        menuVO.setTitle( entity.getTitle() );
+        menuVO.setIcon( entity.getIcon() );
 
         return menuVO;
     }
@@ -83,6 +85,22 @@ public class SystemAdminPojoMapperImpl implements SystemAdminPojoMapper {
         }
 
         return list;
+    }
+
+    @Override
+    public RouterVO parseToRouterVOFromMenu(Menu menu) {
+        if ( menu == null ) {
+            return null;
+        }
+
+        RouterVO routerVO = new RouterVO();
+
+        routerVO.setMeta( menuToMeta( menu ) );
+        routerVO.setName( menu.getName() );
+        routerVO.setPath( menu.getPath() );
+        routerVO.setComponent( menu.getComponent() );
+
+        return routerVO;
     }
 
     protected RoleVO adminToRoleVO(Admin admin) {
